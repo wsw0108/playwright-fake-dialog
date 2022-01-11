@@ -1,0 +1,26 @@
+{
+  "name": "playwright-fake-dialog",
+  "version": "0.1.0",
+  "description": "Mock dialog module in your playwright/electron specs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"https://github.com/wsw0108/electron-playwright-test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsw0108/playwright-fake-dialog.git"
+  },
+  "keywords": [
+    "playwright",
+    "electron",
+    "dialog",
+    "fake",
+    "mock"
+  ],
+  "author": "wsw0108",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wsw0108/playwright-fake-dialog/issues"
+  },
+  "homepage": "https://github.com/wsw0108/playwright-fake-dialog#readme"
+}
