@@ -10,4 +10,4 @@ Based on [spectron-fake-dialog](https://github.com/joe-re/spectron-fake-dialog) 
 
 ## Example
 
-See [playwright-electron-test](https://github.com/wsw0108/playwright-electron-test/blob/master/test/test.js).
+See [electron-playwright-test](https://github.com/wsw0108/electron-playwright-test/blob/master/test/test.js).
