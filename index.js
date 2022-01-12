@@ -1,25 +1,20 @@
-const path = require('path');
-
-function launch(_electron, options) {
-  options = options || {};
-  options.args = options.args || [];
-  options.args.unshift(path.join(__dirname, 'preload.js'));
-  options.args.unshift('--require');
-  return _electron.launch(options);
-}
-
-function ipcRendererSendSyncAsync(page, message, ...args) {
-  return page.evaluate(
-    ({ message, args }) => {
-      const { ipcRenderer } = require('electron');
-      return ipcRenderer.sendSync(message, ...args);
+function mock(electronApp, options) {
+  // idea from https://github.com/microsoft/playwright/issues/8278#issuecomment-1009957411 by MikeJerred
+  return electronApp.evaluate(
+    ({ dialog }, options) => {
+      options.forEach(v => {
+        if (!dialog[v.method]) {
+          throw new Error(`can't find ${v.method} on dialog module.`)
+        }
+        if (v.method.endsWith('Sync')) {
+          dialog[v.method] = () => v.value;
+        } else {
+          dialog[v.method] = Promise.resolve(v.value);
+        }
+      });
     },
-    { message, args }
+    options
   );
 }
 
-function mock(page, options) {
-  return ipcRendererSendSyncAsync(page, 'PLAYWRIGHT_FAKE_DIALOG/SEND', options);
-}
-
-module.exports = { launch, mock };
+module.exports = { mock };
